@@ -1,0 +1,16 @@
+Name:       kmeans-hs
+Version:    0.1
+Synopsis:   Implementation of the K means clustering algorithm
+Description:
+    Shows simple implementation of K means. Purpose of the package is not to
+    be an awesome implementation but as a means to learn the language.
+
+Author:     Will Badart
+Maintainer: wbadart@live.com
+
+Cabal-Version: >= 2.0.0.1
+
+library
+    Exposed-Modules: KMeans
+    Build-Depends:   base >= 2.0
+    HS-Source-Dirs:  kmeans-hs

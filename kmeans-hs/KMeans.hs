@@ -23,17 +23,15 @@ type Metric = (Point -> Point -> Double)
 
 minkowski :: Double -> Point -> Point -> Double
 minkowski p pointA pointB =
-   sum (zipWith absDistP pointA pointB) ** (1 / p)
+    sum (zipWith absDistP pointA pointB) ** (1 / p)
   where
-   absDistP xa xb = abs (xa - xb) ** p
-
-closestCentroid :: Point -> Metric -> [Point] -> Point
-closestCentroid point metric = minimumBy (compare `on` metric point)
+    absDistP xa xb = abs (xa - xb) ** p
 
 kmeans :: [Point] -> Metric -> [Point] -> Map Point [Point]
-kmeans centroids metric data_ =
-    foldr assignCluster (M.fromList $ zip centroids (repeat [])) centroids
+kmeans centroids metric =
+    foldr assignCluster (M.fromList $ zip centroids (repeat []))
   where
     assignCluster point clustering =
       let target_centroid = closestCentroid point metric $ M.keys clustering
       in  M.adjust (point:) target_centroid clustering
+    closestCentroid point metric = minimumBy (compare `on` metric point)

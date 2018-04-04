@@ -12,5 +12,12 @@ Cabal-Version: >= 2.0.0.1
 
 library
     Exposed-Modules: KMeans
-    Build-Depends:   base >= 2.0
+    Build-Depends:   base >= 2.0, containers
     HS-Source-Dirs:  kmeans-hs
+
+executable kmeans-cli
+    Build-Depends:  split
+    HS-Source-Dirs: kmeans-hs
+    Main-Is:        Main.hs
+    Other-Modules:  KMeans
+    ghc-options:    -dynamic -fPIC
